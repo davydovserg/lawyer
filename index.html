@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Фемида — проверенные юристы</title>
+<meta name="description" content="Платформа проверенных юристов: подбор по направлению, анкеты, прямая связь.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0a1d38;--navy2:#10294d;--blue:#2563c9;--blue2:#3b82f6;--sky:#eaf2fd;--sky2:#d6e6fb;
+  --ink:#0d1b2e;--mute:#5a6b82;--line:#dbe4f0;--bg:#f5f8fc;--white:#fff;--gold:#c9a96a;
+  --r:16px;--e:cubic-bezier(.2,.8,.2,1)
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Manrope,system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+.serif{font-family:"Cormorant Garamond",Georgia,serif}
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;border-radius:12px;padding:14px 22px;font-weight:700;font-size:15px;transition:.3s var(--e)}
+.btn.p{background:var(--blue);color:#fff;box-shadow:0 10px 24px -10px #2563c9aa}
+.btn.p:hover{background:#1d55b3;transform:translateY(-1px)}
+.btn.g{background:#fff;border:1px solid var(--line)}
+.btn.g:hover{border-color:var(--blue)}
+.btn.w{background:#ffffff14;color:#fff;border:1px solid #ffffff33}
+.btn.w:hover{background:#ffffff24}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--blue)}
+h2{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:clamp(34px,4vw,54px);line-height:1.05;letter-spacing:-.01em}
+
+/* NAV */
+header{position:absolute;top:0;left:0;right:0;z-index:20}
+nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+.logo{display:flex;align-items:center;gap:12px;color:#fff}
+.logo svg{width:34px;height:34px}
+.logo b{font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:600;letter-spacing:.06em}
+.logo small{display:block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.6;margin-top:-4px}
+.links{display:flex;gap:30px;color:#ffffffc0;font-size:14px;font-weight:600}
+.links a:hover{color:#fff}
+
+/* HERO */
+.hero{background:radial-gradient(1200px 600px at 75% 10%,#1d4b8f 0%,transparent 60%),linear-gradient(180deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;position:relative;overflow-x:clip;padding:140px 0 0;z-index:5}
+.hero:after{content:"";position:absolute;left:0;right:0;bottom:0;height:120px;background:linear-gradient(transparent,var(--bg))}
+.hgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:end;position:relative;z-index:2}
+.hero .eyebrow{color:var(--gold);display:flex;gap:12px;align-items:center}
+.hero .eyebrow:before{content:"";width:34px;height:1px;background:var(--gold)}
+.hero h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(46px,6.2vw,92px);line-height:.98;letter-spacing:-.01em;margin:22px 0 22px}
+.hero h1 i{color:#9cc3ff}
+.hero .lead{font-size:18px;color:#ffffffb8;max-width:540px}
+.search{margin:36px 0 16px;background:#fff;border-radius:18px;padding:8px;display:grid;grid-template-columns:1.4fr 1fr auto;gap:6px;box-shadow:0 30px 60px -30px #000a;color:var(--ink);max-width:640px}
+.search label{display:block;padding:8px 14px;border-radius:12px}
+.search label:hover{background:var(--bg)}
+.search small{display:block;font-size:11px;font-weight:700;color:var(--mute);text-transform:uppercase;letter-spacing:.08em}
+.search select,.search input{border:0;background:none;width:100%;font-weight:600;font-size:15px;outline:none;padding:2px 0;appearance:none;cursor:pointer}
+.dd{position:relative}
+.ddb{width:100%;text-align:left;border:0;background:none;padding:8px 40px 8px 14px;border-radius:12px;cursor:pointer;position:relative;transition:.2s}
+.ddb:hover,.dd.open .ddb{background:var(--bg)}
+.ddb:after{content:"";position:absolute;right:16px;top:50%;width:8px;height:8px;border-right:2px solid var(--blue);border-bottom:2px solid var(--blue);transform:translateY(-70%) rotate(45deg);transition:.3s var(--e)}
+.dd.open .ddb:after{transform:translateY(-20%) rotate(-135deg)}
+.ddv{display:block;font-weight:700;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ddp{position:absolute;left:0;top:calc(100% + 12px);z-index:30;background:#fff;border-radius:16px;box-shadow:0 30px 60px -20px #0a1d3880,0 0 0 1px var(--line);padding:8px;width:max(100%,340px);max-height:360px;overflow:auto;display:none}
+.dd.open .ddp{display:block;animation:up .25s var(--e)}
+.ddo{display:flex;gap:12px;align-items:center;width:100%;border:0;background:none;text-align:left;padding:10px 12px;border-radius:10px;cursor:pointer;font-size:14px;font-weight:600}
+.ddo:hover{background:var(--sky)}
+.ddo.on{background:var(--blue);color:#fff}
+.ddo i{font-style:normal;width:30px;height:30px;flex:none;border-radius:8px;background:var(--sky);display:grid;place-items:center;font-size:15px}
+.ddo.on i{background:#ffffff26}
+.ddo small{display:block;font-weight:500;font-size:12px;opacity:.6}
+.hint{font-size:13px;color:#ffffff90;display:flex;gap:18px;flex-wrap:wrap;margin-bottom:60px}
+.hint span:before{content:"✓ ";color:#9cc3ff}
+.statue{position:relative;justify-self:center;width:min(440px,100%);aspect-ratio:3/4.1;border-radius:240px 240px 0 0;overflow:hidden;border:1px solid #ffffff2a;box-shadow:0 0 0 10px #ffffff08,0 0 0 11px #ffffff14}
+.statue img{width:100%;height:100%;object-fit:cover;object-position:52% 12%;transform:scale(1.25);transform-origin:50% 20%;filter:saturate(1.05) contrast(1.05)}
+.statue:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,#0a1d38e6 100%)}
+.statue .cap{position:absolute;left:0;right:0;bottom:22px;text-align:center;z-index:2}
+.statue .cap b{font-family:"Cormorant Garamond",serif;font-size:30px;font-weight:500;letter-spacing:.3em;display:block}
+.statue .cap small{font-size:11px;letter-spacing:.24em;text-transform:uppercase;opacity:.7}
+.float{position:absolute;z-index:3;background:#fff;color:var(--ink);border-radius:14px;padding:12px 14px;box-shadow:0 20px 40px -20px #000c;font-size:13px;display:flex;gap:10px;align-items:center}
+.float b{display:block;font-size:14px}
+.float.f1{left:-30px;top:34%}
+.float.f2{right:-24px;top:60%}
+.ic{width:34px;height:34px;flex:none;border-radius:10px;background:var(--sky);color:var(--blue);display:grid;place-items:center;font-weight:800}
+
+/* SITUATIONS */
+section{padding:96px 0}
+.shead{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:40px;flex-wrap:wrap}
+.shead p{color:var(--mute);max-width:440px}
+.sits{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.sit{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px;cursor:pointer;transition:.35s var(--e);text-align:left}
+.sit:hover{transform:translateY(-4px);border-color:var(--blue2);box-shadow:0 24px 40px -28px #2563c9}
+.sit .em{font-size:22px;width:44px;height:44px;border-radius:12px;background:var(--sky);display:grid;place-items:center;margin-bottom:16px;transition:.35s var(--e)}
+.sit:hover .em{background:var(--blue);transform:rotate(-6deg)}
+.sit b{display:block;font-size:16px;margin-bottom:4px}
+.sit span{font-size:13px;color:var(--mute)}
+
+/* CATALOG */
+#catalog{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.cgrid{display:grid;grid-template-columns:270px 1fr;gap:36px;align-items:start}
+.filters{position:sticky;top:20px;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.filters h4{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:20px 0 10px}
+.filters h4:first-child{margin-top:0}
+.chk{display:flex;gap:10px;align-items:center;padding:6px 0;font-size:14px;cursor:pointer}
+.chk input{width:17px;height:17px;accent-color:var(--blue)}
+.filters select,.filters input[type=text]{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#fff}
+.reset{margin-top:16px;background:none;border:0;color:var(--blue);font-weight:700;cursor:pointer}
+.bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;gap:12px;flex-wrap:wrap}
+.bar b{font-size:15px}
+.bar .active{display:flex;gap:6px;flex-wrap:wrap}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:5px 10px;border-radius:999px;background:var(--sky);color:#1e4f9f}
+.tag.m{background:var(--blue);color:#fff}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{border:1px solid var(--line);border-radius:var(--r);padding:22px;background:#fff;display:flex;flex-direction:column;gap:14px;transition:.35s var(--e);animation:up .5s var(--e) both}
+.card:hover{border-color:#b9cff0;box-shadow:0 26px 50px -34px #0a1d38}
+@keyframes up{from{opacity:0;transform:translateY(12px)}}
+.ch{display:flex;gap:14px;align-items:center}
+.ava{width:62px;height:62px;border-radius:50%;flex:none;display:grid;place-items:center;font-family:"Cormorant Garamond",serif;font-size:24px;font-weight:600;color:#fff;background:linear-gradient(135deg,#2563c9,#0a1d38);background-size:cover;background-position:center;position:relative}
+.ava .ok{position:absolute;right:-2px;bottom:-2px;width:22px;height:22px;border-radius:50%;background:var(--blue);border:3px solid #fff;display:grid;place-items:center;font:800 10px Manrope}
+.ch b{font-size:17px;display:block;line-height:1.25}
+.ch small{color:var(--mute);font-size:13px}
+.rt{font-size:13px;font-weight:800;color:#b8892f;white-space:nowrap}.rt em{font-style:normal;font-weight:500;color:var(--mute)}
+.ver{font-size:12px;font-weight:700;color:#1e7a4f;display:inline-flex;gap:5px;align-items:center}
+.ver.pend{color:#a06b10}
+.about{font-size:14px;color:#33465f}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);padding-top:14px;gap:8px}
+.meta small{display:block;font-size:11px;color:var(--mute);text-transform:uppercase;letter-spacing:.06em}
+.meta b{font-size:14px}
+.acts{display:flex;gap:8px;margin-top:auto}
+.acts .btn{flex:1;padding:12px;font-size:14px}
+.match{font-size:12px;font-weight:700;color:var(--blue)}
+.empty{grid-column:1/-1;text-align:center;padding:60px 20px;border:1px dashed var(--line);border-radius:var(--r);color:var(--mute)}
+.demo{font-size:12px;color:var(--mute);margin-top:14px}
+
+/* TRUST */
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.trust div{background:#fff;padding:28px}
+.trust .n{font-family:"Cormorant Garamond",serif;font-size:42px;color:var(--blue);line-height:1}
+.trust b{display:block;margin:14px 0 6px;font-size:16px}
+.trust p{font-size:14px;color:var(--mute)}
+
+/* FOR LAWYERS */
+.join{background:linear-gradient(135deg,var(--navy),#163a6e);color:#fff;border-radius:28px;padding:56px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+.join:before{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;border:1px solid #ffffff18;box-shadow:0 0 0 60px #ffffff06,0 0 0 120px #ffffff04}
+.join h2{color:#fff}
+.join p{color:#ffffffb0;margin:16px 0 28px;max-width:480px}
+.join ul{list-style:none;display:grid;gap:12px;position:relative}
+.join li{background:#ffffff0d;border:1px solid #ffffff1a;border-radius:14px;padding:16px 18px;font-size:15px}
+.join li b{color:#9cc3ff;margin-right:8px}
+
+footer{padding:50px 0 40px;color:var(--mute);font-size:13px}
+.fgrid{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:26px}
+footer a{text-decoration:underline}
+
+/* MODAL */
+.modal{position:fixed;inset:0;z-index:100;background:#0a1d38b3;backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:20px}
+.modal.on{display:flex;animation:fade .3s}
+@keyframes fade{from{opacity:0}}
+.mbox{background:#fff;border-radius:22px;width:min(640px,100%);max-height:92vh;overflow:auto;padding:32px;position:relative;animation:up .4s var(--e)}
+.x{position:absolute;right:16px;top:16px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:18px}
+.mbox h3{font-family:"Cormorant Garamond",serif;font-size:34px;font-weight:600;line-height:1.1;margin-bottom:6px}
+.mbox .sub{color:var(--mute);margin-bottom:22px;font-size:14px}
+.f{display:grid;gap:14px}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.f label{font-size:13px;font-weight:700;display:grid;gap:6px}
+.f input,.f select,.f textarea{border:1px solid var(--line);border-radius:10px;padding:12px;font-weight:500;font-size:15px;outline:none;background:var(--bg)}
+.f input:focus,.f textarea:focus,.f select:focus{border-color:var(--blue);background:#fff}
+.pick{display:flex;flex-wrap:wrap;gap:6px}
+.pick button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:600;cursor:pointer}
+.pick button.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.note{font-size:12px;color:var(--mute);background:var(--sky);border-radius:10px;padding:12px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,120px);background:var(--navy);color:#fff;padding:14px 20px;border-radius:12px;font-weight:600;z-index:200;transition:.4s var(--e)}
+.toast.on{transform:translate(-50%,0)}
+
+@media (max-width:980px){
+  .hgrid,.cgrid,.join{grid-template-columns:1fr}
+  .statue{width:min(360px,90%);margin-top:10px}
+  .float.f1{left:-8px}.float.f2{right:-8px}
+  .sits{grid-template-columns:repeat(2,1fr)}
+  .trust{grid-template-columns:1fr 1fr}
+  .filters{position:static}
+  .links{display:none}
+}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  .hero{padding-top:110px}
+  .search{grid-template-columns:1fr}
+  .cards,.trust,.f2{grid-template-columns:1fr}
+  .sits{grid-template-columns:1fr 1fr;gap:10px}
+  .sit{padding:16px}
+  .join{padding:30px 22px;border-radius:20px}
+  section{padding:64px 0}
+  .hint{margin-bottom:40px}
+  nav .btn{padding:10px 14px;font-size:13px}
+  .mbox{padding:24px 18px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header><div class="wrap"><nav>
+  <a class="logo" href="#">
+    <svg viewBox="0 0 40 40" fill="none" stroke="#c9a96a" stroke-width="1.4"><path d="M20 5v29M10 34h20M8 12h24"/><path d="M8 12l-5 10h10zM32 12l-5 10h10z"/><path d="M3 22a5 3 0 0 0 10 0M27 22a5 3 0 0 0 10 0"/><circle cx="20" cy="5" r="1.6" fill="#c9a96a"/></svg>
+    <span><b>ФЕМИДА</b><small>проверенные юристы</small></span>
+  </a>
+  <div class="links"><a href="#situations">Подбор</a><a href="#catalog">Юристы</a><a href="#trust">Проверка</a><a href="#join">Для юристов</a></div>
+  <button class="btn w" onclick="openJoin()">Добавить анкету</button>
+</nav></div></header>
+
+<div class="hero">
+  <div class="wrap hgrid">
+    <div>
+      <div class="eyebrow">Платформа проверенных юристов</div>
+      <h1>Справедливость<br>начинается<br>с <i>верного</i> юриста.</h1>
+      <p class="lead">Опишите ситуацию — платформа покажет юристов, которые ведут именно такие дела. Диплом и статус каждого проверены.</p>
+      <div class="search">
+        <div class="dd" data-for="qDir"><button type="button" class="ddb"><small>Что случилось</small><span class="ddv">Любое направление</span></button><div class="ddp"></div><select id="qDir" hidden></select></div>
+        <div class="dd" data-for="qCity"><button type="button" class="ddb"><small>Город</small><span class="ddv">Все города</span></button><div class="ddp"></div><select id="qCity" hidden></select></div>
+        <button class="btn p" onclick="runSearch()">Подобрать</button>
+      </div>
+      <div class="hint"><span>Без комиссии для клиента</span><span>Прямая связь с юристом</span><span>Онлайн по всей России</span></div>
+    </div>
+    <div class="statue">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Regensburg%2C_Justitiabrunnen_--_2026_--_4446.jpg/1280px-Regensburg%2C_Justitiabrunnen_--_2026_--_4446.jpg" alt="Статуя Фемиды с мечом и весами на фоне неба">
+      <div class="float f1"><span class="ic">✓</span><span><b>Диплом проверен</b>статус в реестре</span></div>
+      <div class="float f2"><span class="ic">⚖</span><span><b>Подбор по делу</b>а не по рекламе</span></div>
+      <div class="cap"><b class="serif">ФЕМИДА</b><small>Закон · Равенство · Честь</small></div>
+    </div>
+  </div>
+</div>
+
+<section id="situations"><div class="wrap">
+  <div class="shead"><div><div class="eyebrow">Шаг 1</div><h2>С чем вы пришли?</h2></div><p>Нажмите на свою ситуацию — покажем юристов этого направления, самые подходящие будут первыми.</p></div>
+  <div class="sits" id="sits"></div>
+</div></section>
+
+<section id="catalog"><div class="wrap">
+  <div class="shead"><div><div class="eyebrow">Шаг 2</div><h2>Юристы для вашего дела</h2></div><p>Сравните опыт, направления и стоимость. Пишите напрямую — платформа не берёт процент с клиента.</p></div>
+  <div class="cgrid">
+    <aside class="filters">
+      <h4>Направление</h4><div id="fDirs"></div>
+      <h4>Город</h4><select id="fCity"></select>
+      <h4>Формат</h4>
+      <label class="chk"><input type="checkbox" id="fOnline"> Консультирует онлайн</label>
+      <label class="chk"><input type="checkbox" id="fVer"> Только проверенные</label>
+      <h4>Опыт от</h4>
+      <select id="fExp"><option value="0">Любой</option><option value="3">3 лет</option><option value="5">5 лет</option><option value="10">10 лет</option></select>
+      <h4>Поиск по имени</h4><input type="text" id="fName" placeholder="Фамилия">
+      <button class="reset" onclick="resetF()">Сбросить фильтры</button>
+    </aside>
+    <div>
+      <div class="bar"><b id="count"></b><div class="active" id="active"></div></div>
+      <div class="cards" id="cards"></div>
+      <button class="btn g" id="more" style="width:100%;margin-top:16px" onclick="limit+=8;render()"></button>
+      <p class="demo">Анкеты, кроме анкеты М. Золотарёвой, — демонстрационные, для показа работы платформы.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="trust"><div class="wrap">
+  <div class="shead"><div><div class="eyebrow">Доверие</div><h2>Как мы проверяем юристов</h2></div><p>Знак «Проверен» получает только тот, кто прошёл все четыре шага.</p></div>
+  <div class="trust">
+    <div><div class="n">I</div><b>Диплом</b><p>Сверяем юридическое образование по документам.</p></div>
+    <div><div class="n">II</div><b>Статус</b><p>Адвокатов проверяем в реестре адвокатской палаты.</p></div>
+    <div><div class="n">III</div><b>Личность</b><p>Видеозвонок с юристом перед публикацией анкеты.</p></div>
+    <div><div class="n">IV</div><b>Отзывы</b><p>Оставить отзыв может только клиент, с которым был договор.</p></div>
+  </div>
+</div></section>
+
+<section id="join" style="padding-top:0"><div class="wrap">
+  <div class="join">
+    <div>
+      <div class="eyebrow" style="color:#9cc3ff">Для юристов</div>
+      <h2>Получайте клиентов<br>по своей специализации</h2>
+      <p>Заполните анкету за 5 минут. Клиенты найдут вас по направлению, городу и опыту — без рекламы и посредников.</p>
+      <button class="btn p" onclick="openJoin()">Добавить анкету юриста</button>
+    </div>
+    <ul>
+      <li><b>01</b>Заполняете анкету и направления</li>
+      <li><b>02</b>Проходите проверку диплома и статуса</li>
+      <li><b>03</b>Получаете знак «Проверен» и заявки</li>
+    </ul>
+  </div>
+</div></section>
+
+<footer><div class="wrap fgrid">
+  <span>© 2026 Фемида — платформа проверенных юристов</span>
+  <span>Фото статуи: Dietmar Rabich, <a href="https://commons.wikimedia.org/wiki/File:Regensburg,_Justitiabrunnen_--_2026_--_4446.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY-SA 4.0</span>
+</div></footer>
+
+<!-- профиль -->
+<div class="modal" id="mProfile"><div class="mbox" id="profileBox"></div></div>
+
+<!-- анкета -->
+<div class="modal" id="mJoin"><div class="mbox">
+  <button class="x" onclick="closeM()">×</button>
+  <h3>Анкета юриста</h3>
+  <p class="sub">После отправки анкета появится в каталоге со статусом «На проверке».</p>
+  <form class="f" id="joinForm">
+    <div class="f2">
+      <label>Имя и фамилия<input name="name" required placeholder="Анна Смирнова"></label>
+      <label>Город<input name="city" required placeholder="Москва"></label>
+    </div>
+    <div class="f2">
+      <label>Опыт, лет<input name="exp" type="number" min="0" max="60" required placeholder="7"></label>
+      <label>Консультация от, ₽<input name="price" type="number" min="0" placeholder="3000"></label>
+    </div>
+    <label>Статус<select name="role"><option>Юрист</option><option>Адвокат</option></select></label>
+    <label>Направления (выберите свои)<div class="pick" id="joinDirs"></div></label>
+    <label>Коротко о себе<textarea name="about" rows="3" required placeholder="Какие дела ведёте, чем отличаетесь"></textarea></label>
+    <div class="f2">
+      <label>Телефон или Telegram<input name="contact" required placeholder="@username"></label>
+      <label>Фото (ссылка, необязательно)<input name="photo" type="url" placeholder="https://…"></label>
+    </div>
+    <label class="chk" style="font-weight:500"><input type="checkbox" name="online" checked> Консультирую онлайн</label>
+    <div class="note">Чтобы получить знак «Проверен», после отправки мы попросим скан диплома и проведём короткий видеозвонок.</div>
+    <button class="btn p" type="submit">Отправить анкету</button>
+  </form>
+</div></div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const DIRS=[
+ ['inherit','Наследство','🏛','Принятие, споры, завещания'],
+ ['family','Семейные споры','👪','Развод, алименты, дети'],
+ ['realty','Сделки с недвижимостью','🔑','Покупка, продажа, проверка'],
+ ['housing','Жилищные споры','🏠','Выселение, доли, УК'],
+ ['criminal','Уголовные дела','⚖','Защита, в т.ч. по жилью'],
+ ['bankrupt','Банкротство','📉','Физлица и компании'],
+ ['block','Блоки по 115-ФЗ, ЗСК','🔒','Разблокировка счетов'],
+ ['business','Регистрация и ликвидация','🏢','ООО и ИП под ключ'],
+ ['civil','Гражданские дела','📜','Договоры, долги, иски'],
+ ['credit','Кредитные продукты','💳','Помощь в получении'],
+ ['eu','Гражданство ЕС','🇪🇺','Основания и документы']];
+const DN=Object.fromEntries(DIRS.map(d=>[d[0],d[1]]));
+const SEED=[
+ {id:'zol',name:'Марина Золотарёва',role:'Юрист',city:'Онлайн по РФ',exp:null,price:null,online:true,ver:true,real:true,
+  dirs:['inherit','family','realty','housing','criminal','bankrupt','block','business','civil','credit','eu'],
+  about:'Ваш персональный юрист. Наследство, семейные и жилищные споры, сделки с недвижимостью, банкротство, блокировки по 115-ФЗ, регистрация и ликвидация бизнеса, гражданство ЕС.'},
+ ...[
+ ['Алексей Воронцов','Адвокат','Москва',14,5000,1,1,'criminal housing civil','Защита по уголовным делам, в том числе когда жилищный спор перешёл в уголовную плоскость.',4.9,38],
+ ['Елена Карпова','Юрист','Санкт-Петербург',9,3000,1,1,'family inherit','Разводы, раздел имущества, алименты и наследственные споры. Стараюсь решить дело миром, но готова к суду.',4.8,52],
+ ['Игорь Савельев','Юрист','Москва',7,4000,0,1,'bankrupt credit civil','Банкротство физических лиц и компаний, работа с банками и кредиторами.',4.7,27],
+ ['Ольга Миронова','Юрист','Краснодар',5,2500,1,1,'block business','Снятие блокировок по 115-ФЗ, выход из списков ЗСК, регистрация ООО и ИП.',4.9,41],
+ ['Дмитрий Лебедев','Адвокат','Санкт-Петербург',11,6000,1,0,'realty housing','Сопровождение сделок с недвижимостью и проверка объектов до покупки.',null,0],
+ ['Наталья Белова','Адвокат','Москва',18,7000,1,1,'inherit civil realty','Сложные наследственные дела: оспаривание завещаний, выделение супружеской доли, наследство за рубежом.',5.0,64],
+ ['Сергей Ковалёв','Юрист','Екатеринбург',8,2500,1,1,'bankrupt credit','Банкротство граждан под ключ. Сопровождаю от анализа долгов до списания.',4.8,33],
+ ['Анна Гордеева','Юрист','Казань',6,2000,1,1,'family housing','Семейные споры и жильё: порядок общения с ребёнком, алименты, вселение и выселение.',4.9,29],
+ ['Виктор Ершов','Адвокат','Ростов-на-Дону',21,8000,0,1,'criminal civil','Уголовная защита на всех стадиях: от доследственной проверки до апелляции.',4.8,57],
+ ['Мария Тихонова','Юрист','Москва',4,3000,1,1,'eu business','Гражданство и ВНЖ в ЕС: Румыния, Болгария, Венгрия. Проверка оснований и подготовка документов.',4.7,18],
+ ['Павел Орлов','Юрист','Новосибирск',10,2500,1,1,'block business credit','Работаю с банками: блокировки по 115-ФЗ, ЗСК, кредиты для бизнеса.',4.8,36],
+ ['Ирина Соколова','Адвокат','Санкт-Петербург',15,6000,1,1,'housing realty criminal','Жилищные споры, которые переходят в уголовные: мошенничество с квартирами, «чёрные» риелторы.',4.9,47],
+ ['Константин Фролов','Юрист','Москва',12,5000,1,1,'business bankrupt','Регистрация и ликвидация компаний, банкротство юрлиц, субсидиарная ответственность.',4.7,31],
+ ['Татьяна Аксёнова','Юрист','Нижний Новгород',7,2000,1,1,'inherit family','Наследство и семья. Помогаю восстановить пропущенный срок принятия наследства.',4.8,24],
+ ['Роман Захаров','Адвокат','Краснодар',9,4000,0,1,'criminal housing','Защита по уголовным делам, споры с застройщиками и управляющими компаниями.',4.6,22],
+ ['Светлана Ильина','Юрист','Сочи',6,3500,1,1,'realty housing','Сделки с недвижимостью на побережье: проверка объектов, споры с застройщиками.',4.9,26],
+ ['Михаил Степанов','Юрист','Екатеринбург',13,3000,1,1,'civil credit','Гражданские иски: взыскание долгов, защита прав потребителей, споры по договорам.',4.7,39],
+ ['Юлия Новикова','Юрист','Москва',3,2000,1,0,'family civil','Помогаю с разводом и разделом имущества без лишнего стресса.',null,0],
+ ['Андрей Белов','Адвокат','Самара',16,5000,1,1,'criminal civil inherit','Уголовная и гражданская практика. Веду дела в судах всех инстанций.',4.8,44],
+ ['Екатерина Лаврова','Юрист','Санкт-Петербург',8,4000,1,1,'eu civil','Европейское гражданство по происхождению, легализация документов, апостиль.',4.9,21],
+ ['Олег Никитин','Юрист','Казань',11,2500,1,1,'bankrupt block','Банкротство физлиц и снятие блокировок со счетов.',4.7,30],
+ ['Вера Королёва','Адвокат','Москва',20,9000,1,1,'family inherit realty','Крупные семейные и наследственные споры, раздел бизнеса и недвижимости при разводе.',5.0,71],
+ ['Артём Гусев','Юрист','Воронеж',5,2000,1,0,'business credit','Регистрация ИП и ООО, помощь в получении кредитов для малого бизнеса.',null,0],
+ ['Людмила Ткаченко','Юрист','Ростов-на-Дону',14,3000,1,1,'housing civil','Жилищные споры: доли, коммуналка, перепланировки, споры с соседями и УК.',4.8,35]
+ ].map((r,i)=>({id:'d'+i,name:r[0],role:r[1],city:r[2],exp:r[3],price:r[4],online:!!r[5],ver:!!r[6],dirs:r[7].split(' '),about:r[8],rating:r[9],reviews:r[10]}))];
+
+const LS='femida_lawyers';
+let added=[];try{added=JSON.parse(localStorage.getItem(LS)||'[]')}catch(e){}
+const all=()=>[...SEED,...added];
+const st={dirs:new Set(),city:'',online:false,ver:false,exp:0,name:''};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ini=n=>n.split(' ').map(w=>w[0]).slice(0,2).join('');
+
+function cities(){return [...new Set(all().map(l=>l.city))].sort()}
+function fillSelects(){
+  $('#qDir').innerHTML='<option value="">Любое направление</option>'+DIRS.map(d=>`<option value="${d[0]}">${d[1]}</option>`).join('');
+  const c='<option value="">Все города</option>'+cities().map(x=>`<option>${esc(x)}</option>`).join('');
+  $('#qCity').innerHTML=c;$('#fCity').innerHTML=c;$('#fCity').value=st.city;
+  buildDD();
+}
+function buildDD(){document.querySelectorAll('.dd').forEach(dd=>{
+  const sel=$('#'+dd.dataset.for),isDir=sel.id==='qDir';
+  dd.querySelector('.ddp').innerHTML=[...sel.options].map(o=>{
+    const d=DIRS.find(x=>x[0]===o.value);
+    const icon=isDir?(d?d[2]:'✦'):(o.value?'📍':'🌐');
+    const sub=isDir?(d?d[3]:'Покажем всех юристов'):(o.value?'':'Включая онлайн-консультации');
+    return `<button type="button" class="ddo ${sel.value===o.value?'on':''}" data-v="${esc(o.value)}"><i>${icon}</i><span>${esc(o.text)}${sub?`<small>${sub}</small>`:''}</span></button>`}).join('');
+  dd.querySelector('.ddv').textContent=sel.options[sel.selectedIndex]?.text||'';
+})}
+document.addEventListener('click',e=>{
+  const o=e.target.closest('.ddo'),b=e.target.closest('.ddb');
+  if(o){const dd=o.closest('.dd'),sel=$('#'+dd.dataset.for);sel.value=o.dataset.v;dd.classList.remove('open');buildDD();return}
+  document.querySelectorAll('.dd.open').forEach(d=>{if(!b||d!==b.parentNode)d.classList.remove('open')});
+  if(b)b.parentNode.classList.toggle('open');
+});
+$('#sits').innerHTML=DIRS.map(d=>`<button class="sit" onclick="pickSit('${d[0]}')"><div class="em">${d[2]}</div><b>${d[1]}</b><span>${d[3]}</span></button>`).join('');
+$('#fDirs').innerHTML=DIRS.map(d=>`<label class="chk"><input type="checkbox" value="${d[0]}" onchange="togDir(this)"> ${d[1]}</label>`).join('');
+$('#joinDirs').innerHTML=DIRS.map(d=>`<button type="button" data-d="${d[0]}" onclick="this.classList.toggle('on')">${d[1]}</button>`).join('');
+
+function syncChecks(){limit=8;document.querySelectorAll('#fDirs input').forEach(i=>i.checked=st.dirs.has(i.value))}
+function togDir(i){limit=8;i.checked?st.dirs.add(i.value):st.dirs.delete(i.value);render()}
+function pickSit(d){st.dirs=new Set([d]);syncChecks();render();$('#catalog').scrollIntoView()}
+function runSearch(){const d=$('#qDir').value;st.dirs=new Set(d?[d]:[]);st.city=$('#qCity').value;$('#fCity').value=st.city;syncChecks();render();$('#catalog').scrollIntoView()}
+function resetF(){Object.assign(st,{dirs:new Set(),city:'',online:false,ver:false,exp:0,name:''});
+  $('#fCity').value='';$('#fOnline').checked=$('#fVer').checked=false;$('#fExp').value='0';$('#fName').value='';syncChecks();render()}
+$('#fCity').onchange=e=>{st.city=e.target.value;render()};
+$('#fOnline').onchange=e=>{st.online=e.target.checked;render()};
+$('#fVer').onchange=e=>{st.ver=e.target.checked;render()};
+$('#fExp').onchange=e=>{st.exp=+e.target.value;render()};
+$('#fName').oninput=e=>{st.name=e.target.value.toLowerCase();render()};
+
+let limit=8;const _r=()=>{limit=8};
+['#fCity','#fOnline','#fVer','#fExp'].forEach(s=>$(s).addEventListener('change',_r,true));$('#fName').addEventListener('input',_r,true);
+function score(l){return [...st.dirs].filter(d=>l.dirs.includes(d)).length}
+function render(){
+  let list=all().filter(l=>
+    (!st.dirs.size||score(l)>0)&&(!st.city||l.city===st.city||l.city==='Онлайн по РФ')&&
+    (!st.online||l.online)&&(!st.ver||l.ver)&&(!st.exp||(l.exp??99)>=st.exp)&&(!st.name||l.name.toLowerCase().includes(st.name)));
+  list.sort((a,b)=>score(b)-score(a)||(b.ver-a.ver)||((b.real?1:0)-(a.real?1:0))||((b.rating||0)-(a.rating||0))||((b.exp||0)-(a.exp||0)));
+  const n=list.length,shown=list.slice(0,limit);
+  $('#count').textContent=n?`Найдено: ${n} ${n%10==1&&n%100!=11?'юрист':(n%10>=2&&n%10<=4&&(n%100<10||n%100>=20)?'юриста':'юристов')}`:'Никого не нашли';
+  $('#active').innerHTML=[...st.dirs].map(d=>`<span class="tag m">${DN[d]}</span>`).join('')+(st.city?`<span class="tag m">${esc(st.city)}</span>`:'');
+  $('#more').style.display=n>limit?'':'none';$('#more').textContent=`Показать ещё (${n-limit})`;
+  $('#cards').innerHTML=n?shown.map(card).join(''):`<div class="empty">Под эти фильтры никого нет.<br><button class="reset" onclick="resetF()">Сбросить фильтры</button></div>`;
+}
+const GR=['#2563c9,#0a1d38','#3b82f6,#1e3a8a','#0f766e,#0a1d38','#6d5bd0,#1e1b4b','#c9a96a,#5b4520','#0891b2,#164e63','#475569,#0f172a'];
+function grad(n){let h=0;for(const c of n)h=(h*31+c.charCodeAt(0))>>>0;return GR[h%GR.length]}
+function stars(l){return l.rating?`<span class="rt">★ ${l.rating.toFixed(1)} <em>· ${l.reviews} отзыв${l.reviews%10==1&&l.reviews%100!=11?'':(l.reviews%10>=2&&l.reviews%10<=4&&(l.reviews%100<10||l.reviews%100>=20)?'а':'ов')}</em></span>`:'<span class="rt"><em>Новый на платформе</em></span>'}
+function ava(l){return `<div class="ava" style="${l.photo?`background-image:url('${esc(l.photo)}')`:`background-image:linear-gradient(135deg,${grad(l.name)})`}">${l.photo?'':esc(ini(l.name))}${l.ver?'<span class="ok">✓</span>':''}</div>`}
+function card(l){
+  const s=score(l);
+  const tags=[...l.dirs].sort((a,b)=>st.dirs.has(b)-st.dirs.has(a)).slice(0,5);
+  return `<article class="card">
+    <div class="ch">${ava(l)}<div><b>${esc(l.name)}</b><small>${esc(l.role)} · ${esc(l.city)}</small><br>
+      ${l.ver?'<span class="ver">● Проверен платформой</span>':'<span class="ver pend">● На проверке</span>'}</div><div style="margin-left:auto;align-self:flex-start">${stars(l)}</div></div>
+    ${st.dirs.size&&s?`<div class="match">Подходит по вашему запросу</div>`:''}
+    <p class="about">${esc(l.about)}</p>
+    <div class="tags">${tags.map(d=>`<span class="tag ${st.dirs.has(d)?'m':''}">${DN[d]}</span>`).join('')}${l.dirs.length>5?`<span class="tag">+${l.dirs.length-5}</span>`:''}</div>
+    <div class="meta"><div><small>Опыт</small><b>${l.exp!=null?l.exp+' лет':'—'}</b></div><div><small>Консультация</small><b>${l.price?'от '+Number(l.price).toLocaleString('ru')+' ₽':'по запросу'}</b></div><div><small>Онлайн</small><b>${l.online?'Да':'Нет'}</b></div></div>
+    <div class="acts"><button class="btn g" onclick="openP('${l.id}')">Анкета</button><button class="btn p" onclick="contact('${l.id}')">Написать</button></div>
+  </article>`}
+function openP(id){const l=all().find(x=>x.id===id);
+  $('#profileBox').innerHTML=`<button class="x" onclick="closeM()">×</button>
+   <div class="ch" style="margin-bottom:18px">${ava(l)}<div><h3>${esc(l.name)}</h3><small style="color:var(--mute)">${esc(l.role)} · ${esc(l.city)}</small></div></div>
+   <p class="about" style="font-size:16px;margin-bottom:18px">${esc(l.about)}</p>
+   <div class="eyebrow" style="margin-bottom:10px">Направления</div>
+   <div class="tags" style="margin-bottom:22px">${l.dirs.map(d=>`<span class="tag">${DN[d]}</span>`).join('')}</div>
+   <div class="trust" style="grid-template-columns:1fr 1fr;margin-bottom:22px">
+     <div><b style="margin:0">${l.ver?'✓ Диплом проверен':'Диплом на проверке'}</b><p>${l.ver?'Документы сверены платформой':'Юрист прислал документы'}</p></div>
+     <div><b style="margin:0">Договор</b><p>Работа по договору с фиксированной ценой</p></div></div>
+   <button class="btn p" style="width:100%" onclick="contact('${l.id}')">Написать юристу</button>`;
+  $('#mProfile').classList.add('on')}
+function contact(id){const l=all().find(x=>x.id===id);closeM();
+  toast(l.contact?`Контакт: ${l.contact}`:`Заявка для «${l.name}» — здесь откроется чат с юристом`)}
+function openJoin(){$('#mJoin').classList.add('on')}
+function closeM(){document.querySelectorAll('.modal').forEach(m=>m.classList.remove('on'))}
+document.querySelectorAll('.modal').forEach(m=>m.onclick=e=>{if(e.target===m)closeM()});
+addEventListener('keydown',e=>{if(e.key==='Escape'){closeM();document.querySelectorAll('.dd.open').forEach(d=>d.classList.remove('open'))}});
+function toast(t){const el=$('#toast');el.textContent=t;el.classList.add('on');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('on'),3200)}
+
+$('#joinForm').onsubmit=e=>{e.preventDefault();
+  const f=new FormData(e.target),dirs=[...document.querySelectorAll('#joinDirs .on')].map(b=>b.dataset.d);
+  if(!dirs.length){toast('Выберите хотя бы одно направление');return}
+  const l={id:'u'+Date.now(),name:f.get('name').trim(),city:f.get('city').trim(),exp:+f.get('exp'),price:+f.get('price')||null,
+    role:f.get('role'),about:f.get('about').trim(),contact:f.get('contact').trim(),photo:f.get('photo').trim(),online:!!f.get('online'),ver:false,dirs};
+  added.push(l);try{localStorage.setItem(LS,JSON.stringify(added))}catch(e){}
+  e.target.reset();document.querySelectorAll('#joinDirs .on').forEach(b=>b.classList.remove('on'));
+  closeM();fillSelects();resetF();$('#catalog').scrollIntoView();toast('Анкета добавлена — статус «На проверке»')};
+
+fillSelects();render();
+</script>
+</body>
+</html>

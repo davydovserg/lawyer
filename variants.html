@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Золотарёва — первые экраны</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Manrope,system-ui,sans-serif;background:#111;color:#111;-webkit-font-smoothing:antialiased}
+.switch{position:fixed;z-index:50;left:50%;bottom:18px;transform:translateX(-50%);display:flex;gap:4px;background:rgba(20,20,20,.85);backdrop-filter:blur(10px);padding:5px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.switch button{border:0;background:none;color:#bbb;font:600 13px Manrope;padding:9px 16px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.switch button.on{background:#fff;color:#111}
+.v{display:none;min-height:100vh}.v.on{display:block}
+.serif{font-family:"Cormorant Garamond",Georgia,serif}
+a{color:inherit;text-decoration:none}
+
+/* ===== A — ДОСЬЕ ===== */
+#a{background:#f4efe6;color:#1b2230}
+#a nav{display:flex;justify-content:space-between;align-items:center;padding:26px 6vw;border-bottom:1px solid #1b223022}
+#a .logo{font-size:22px;font-weight:600;letter-spacing:.02em}
+#a .logo small{display:block;font:500 10px Manrope;letter-spacing:.22em;text-transform:uppercase;opacity:.55;margin-top:2px}
+#a nav .links{display:flex;gap:28px;font-size:14px;opacity:.75}
+#a .cta{background:#1b2230;color:#f4efe6;padding:12px 20px;border-radius:2px;font-size:14px;font-weight:600}
+#a .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:6vw;padding:8vh 6vw 10vh;align-items:center}
+#a .kicker{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#9a7b45;margin-bottom:28px;display:flex;align-items:center;gap:12px}
+#a .kicker:before{content:"";width:36px;height:1px;background:#9a7b45}
+#a h1{font-size:clamp(48px,7vw,104px);line-height:.95;font-weight:500;letter-spacing:-.01em}
+#a h1 i{color:#9a7b45}
+#a .lead{font-size:18px;line-height:1.6;max-width:520px;margin:32px 0 40px;opacity:.8}
+#a .row{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+#a .ghost{border-bottom:1px solid #1b2230;padding:4px 0;font-weight:600;font-size:15px}
+#a .file{background:#fffdf8;border:1px solid #1b223018;padding:34px 34px 26px;position:relative;box-shadow:0 30px 60px -30px #1b223040}
+#a .file:before{content:"";position:absolute;inset:8px;border:1px solid #9a7b4533;pointer-events:none}
+#a .file h3{font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:#9a7b45;margin-bottom:18px}
+#a .file li{list-style:none;display:flex;justify-content:space-between;gap:14px;padding:13px 0;border-top:1px solid #1b223014;font-size:15px}
+#a .file li span{font-family:"Cormorant Garamond",serif;font-size:18px;color:#9a7b45;min-width:28px}
+#a .file li b{flex:1;font-weight:500}
+#a .file li em{font-style:normal;opacity:.4}
+#a .stamp{position:absolute;right:-18px;top:-22px;width:96px;height:96px;border-radius:50%;border:1px solid #9a7b45;display:grid;place-items:center;text-align:center;font:600 9px/1.3 Manrope;letter-spacing:.14em;text-transform:uppercase;color:#9a7b45;background:#f4efe6;transform:rotate(-12deg)}
+
+/* ===== B — НАВИГАТОР ===== */
+#b{background:#0e1412;color:#e9efe9;position:relative;overflow:hidden}
+#b:before{content:"";position:absolute;width:900px;height:900px;right:-300px;top:-400px;background:radial-gradient(circle,#1f6b5233,transparent 60%)}
+#b nav{position:relative;display:flex;justify-content:space-between;align-items:center;padding:26px 6vw}
+#b .logo{font-weight:700;font-size:17px;display:flex;align-items:center;gap:10px}
+#b .logo i{width:28px;height:28px;border-radius:8px;background:#3fbf8f;display:grid;place-items:center;color:#0e1412;font-style:normal;font-size:14px}
+#b nav .r{display:flex;gap:10px;align-items:center;font-size:14px}
+#b .tel{opacity:.7}
+#b .btn{background:#3fbf8f;color:#0b120f;padding:12px 18px;border-radius:10px;font-weight:700;font-size:14px}
+#b .wrap{position:relative;padding:6vh 6vw 12vh;max-width:1200px}
+#b h1{font-size:clamp(40px,5.6vw,80px);line-height:1.02;font-weight:700;letter-spacing:-.035em;max-width:900px}
+#b h1 span{color:#3fbf8f}
+#b .sub{font-size:17px;opacity:.65;margin:22px 0 38px;max-width:560px;line-height:1.55}
+#b .chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px}
+#b .chip{border:1px solid #ffffff22;background:#ffffff08;color:#e9efe9;padding:12px 16px;border-radius:12px;font:600 14px Manrope;cursor:pointer;transition:.25s cubic-bezier(.2,.8,.2,1)}
+#b .chip:hover{border-color:#3fbf8f88;transform:translateY(-2px)}
+#b .chip.on{background:#3fbf8f;color:#0b120f;border-color:#3fbf8f}
+#b .answer{display:grid;grid-template-columns:1.2fr 1fr;gap:1px;background:#ffffff14;border:1px solid #ffffff14;border-radius:18px;overflow:hidden}
+#b .answer>div{background:#121a17;padding:26px}
+#b .answer h4{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#3fbf8f;margin-bottom:14px}
+#b .answer p{font-size:16px;line-height:1.55;opacity:.85}
+#b .steps{list-style:none;counter-reset:s}
+#b .steps li{counter-increment:s;display:flex;gap:12px;padding:8px 0;font-size:15px;opacity:.85}
+#b .steps li:before{content:counter(s);width:24px;height:24px;flex:none;border-radius:50%;border:1px solid #3fbf8f;color:#3fbf8f;display:grid;place-items:center;font-size:12px;font-weight:700}
+#b .go{margin-top:18px;display:inline-block}
+
+/* ===== C — КАБИНЕТ ===== */
+#c{background:#f6f7f9;color:#121826}
+#c nav{display:flex;justify-content:space-between;align-items:center;padding:22px 6vw}
+#c .logo{font-weight:700;font-size:17px}
+#c .logo b{color:#3550e6}
+#c nav .r{display:flex;gap:10px}
+#c .in{border:1px solid #12182622;padding:11px 16px;border-radius:10px;font-weight:600;font-size:14px}
+#c .btn{background:#121826;color:#fff;padding:11px 16px;border-radius:10px;font-weight:600;font-size:14px}
+#c .hero{display:grid;grid-template-columns:1fr 1.05fr;gap:5vw;padding:6vh 6vw 10vh;align-items:center}
+#c .badge{display:inline-flex;gap:8px;align-items:center;background:#fff;border:1px solid #1218261a;padding:7px 12px;border-radius:999px;font-size:13px;font-weight:600;margin-bottom:24px}
+#c .badge i{width:7px;height:7px;border-radius:50%;background:#22b07d;box-shadow:0 0 0 4px #22b07d22}
+#c h1{font-size:clamp(38px,5vw,68px);line-height:1.04;letter-spacing:-.035em;font-weight:700}
+#c h1 span{color:#3550e6}
+#c .lead{font-size:17px;line-height:1.6;opacity:.7;margin:22px 0 32px;max-width:500px}
+#c .trust{display:flex;gap:26px;margin-top:38px;flex-wrap:wrap}
+#c .trust div{font-size:13px;opacity:.65;max-width:150px;line-height:1.4}
+#c .trust b{display:block;font-size:15px;opacity:1;color:#121826;margin-bottom:3px}
+#c .app{background:#fff;border-radius:22px;box-shadow:0 40px 80px -40px #12182640,0 0 0 1px #1218260d;padding:22px;position:relative}
+#c .app .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+#c .app .top b{font-size:15px}
+#c .app .top small{font-size:12px;opacity:.5}
+#c .case{background:#f6f7f9;border-radius:14px;padding:18px;margin-bottom:12px}
+#c .case h5{font-size:15px;margin-bottom:4px}
+#c .case p{font-size:13px;opacity:.55}
+#c .track{display:flex;gap:6px;margin:16px 0 8px}
+#c .track i{flex:1;height:6px;border-radius:3px;background:#dfe3ea}
+#c .track i.d{background:#3550e6}
+#c .track i.n{background:linear-gradient(90deg,#3550e6 50%,#dfe3ea 50%)}
+#c .tl{display:flex;justify-content:space-between;font-size:11px;opacity:.5}
+#c .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#c .mini{border:1px solid #1218260f;border-radius:14px;padding:14px}
+#c .mini small{font-size:11px;opacity:.5;text-transform:uppercase;letter-spacing:.08em}
+#c .mini b{display:block;font-size:15px;margin-top:6px}
+#c .mini p{font-size:12px;opacity:.55;margin-top:2px}
+#c .app{margin-bottom:50px}
+#c .msg{position:absolute;right:-20px;bottom:-56px;background:#121826;color:#fff;border-radius:14px 14px 14px 4px;padding:12px 14px;font-size:13px;max-width:240px;box-shadow:0 20px 40px -20px #000}
+#c .msg small{display:block;opacity:.5;font-size:11px;margin-bottom:3px}
+
+@media (max-width:860px){
+  nav .links,#b .tel,#c .in{display:none!important}
+  #a .hero,#b .answer,#c .hero{grid-template-columns:1fr}
+  #a .hero{padding-top:6vh;gap:56px}
+  #a .stamp{right:6px;top:-40px;width:80px;height:80px;font-size:8px}
+  #c .msg{position:static;margin-top:12px;max-width:none}
+  #a nav,#b nav,#c nav{padding:18px 16px}
+  #a .hero,#b .wrap,#c .hero{padding-left:16px;padding-right:16px}
+  .switch button{padding:8px 11px;font-size:12px}
+  .v{padding-bottom:80px}
+}
+</style>
+</head>
+<body>
+
+<!-- A -->
+<section class="v on" id="a">
+  <nav>
+    <div class="logo serif">Марина Золотарёва<small>Частная юридическая практика</small></div>
+    <div class="links"><a>Практики</a><a>Как работаю</a><a>Кейсы</a><a>Контакты</a></div>
+    <a class="cta">Записаться</a>
+  </nav>
+  <div class="hero">
+    <div>
+      <div class="kicker">Ваш персональный юрист</div>
+      <h1 class="serif">Право —<br>на <i>вашей</i><br>стороне.</h1>
+      <p class="lead">Наследство, семья, недвижимость, банкротство и бизнес. Веду дело лично — от первой консультации до решения суда.</p>
+      <div class="row"><a class="cta">Разобрать мою ситуацию</a><a class="ghost">Смотреть практики →</a></div>
+    </div>
+    <div class="file">
+      <div class="stamp">Лично<br>ведёт<br>каждое<br>дело</div>
+      <h3>Практики</h3>
+      <ul>
+        <li><span>I</span><b>Наследственные споры</b><em>→</em></li>
+        <li><span>II</span><b>Семейные споры</b><em>→</em></li>
+        <li><span>III</span><b>Недвижимость и жильё</b><em>→</em></li>
+        <li><span>IV</span><b>Банкротство физ. и юр. лиц</b><em>→</em></li>
+        <li><span>V</span><b>Блокировки по 115-ФЗ, ЗСК</b><em>→</em></li>
+        <li><span>VI</span><b>Бизнес: регистрация, ликвидация</b><em>→</em></li>
+        <li><span>VII</span><b>Гражданство ЕС</b><em>→</em></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- B -->
+<section class="v" id="b">
+  <nav>
+    <div class="logo"><i>З</i>Золотарёва · юрист</div>
+    <div class="r"><span class="tel">+7 (___) ___-__-__</span><a class="btn">Написать юристу</a></div>
+  </nav>
+  <div class="wrap">
+    <h1>Что у вас случилось?<br><span>Покажу, что делать дальше.</span></h1>
+    <p class="sub">Выберите ситуацию — сразу увидите план действий. Затем разберём ваш случай лично.</p>
+    <div class="chips" id="chips"></div>
+    <div class="answer">
+      <div><h4>Что это значит</h4><p id="ans"></p></div>
+      <div><h4>План действий</h4><ol class="steps" id="steps"></ol><a class="btn go">Разобрать мой случай →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- C -->
+<section class="v" id="c">
+  <nav>
+    <div class="logo">Золотарёва<b>.</b>право</div>
+    <div class="r"><a class="in">Личный кабинет</a><a class="btn">Консультация</a></div>
+  </nav>
+  <div class="hero">
+    <div>
+      <div class="badge"><i></i>Принимаю новые дела</div>
+      <h1>Ваше дело —<br>под контролем.<br><span>Каждый день.</span></h1>
+      <p class="lead">Личный кабинет клиента: статус дела, документы, даты заседаний и прямая связь с юристом. Никаких «я вам перезвоню».</p>
+      <a class="btn">Начать с консультации</a>
+      <div class="trust">
+        <div><b>Договор</b>и фиксированная смета до начала работы</div>
+        <div><b>Лично</b>без передачи дела помощникам</div>
+        <div><b>Онлайн</b>документы и статус в кабинете</div>
+      </div>
+    </div>
+    <div class="app">
+      <div class="top"><b>Мои дела</b><small>обновлено сегодня</small></div>
+      <div class="case">
+        <h5>Восстановление срока принятия наследства</h5>
+        <p>Районный суд · дело в работе</p>
+        <div class="track"><i class="d"></i><i class="d"></i><i class="n"></i><i></i></div>
+        <div class="tl"><span>Анализ</span><span>Иск</span><span>Заседания</span><span>Решение</span></div>
+      </div>
+      <div class="grid2">
+        <div class="mini"><small>Заседание</small><b>24 ноября, 11:30</b><p>Зал 4 · явка не нужна</p></div>
+        <div class="mini"><small>Документы</small><b>7 файлов</b><p>Нужна копия свидетельства</p></div>
+      </div>
+      <div class="msg"><small>Марина Золотарёва</small>Ходатайство подано, судья принял его к рассмотрению.</div>
+    </div>
+  </div>
+</section>
+
+<div class="switch">
+  <button class="on" data-v="a">A · Досье</button>
+  <button data-v="b">B · Навигатор</button>
+  <button data-v="c">C · Кабинет</button>
+</div>
+
+<script>
+document.querySelectorAll('.switch button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.switch button,.v').forEach(e=>e.classList.remove('on'));
+  b.classList.add('on');document.getElementById(b.dataset.v).classList.add('on');scrollTo(0,0)});
+const S={
+ 'Наследство':['Нотариус отказал, пропущен срок или оспаривают завещание — это решается, часто даже после 6 месяцев.',['Собираем документы и сроки','Пробуем решить у нотариуса','Если нет — иск в суд и сопровождение до решения']],
+ 'Развод и имущество':['Раздел совместно нажитого, алименты, порядок общения с ребёнком — можно договориться или решить в суде.',['Оцениваем имущество и позиции','Досудебные переговоры','Суд и исполнение решения']],
+ 'Квартира / жильё':['Сделки, выселение, доли, споры с соседями и УК. Если спор переходит в уголовную плоскость — подключаюсь сразу.',['Проверка документов и рисков','Переговоры или иск','Защита, если дело стало уголовным']],
+ 'Долги / банкротство':['Банкротство физлиц и компаний: списание долгов законно, с сохранением того, что можно сохранить.',['Анализ долгов и имущества','Выбор процедуры','Сопровождение до завершения']],
+ 'Заблокировали счёт':['Блокировка по 115-ФЗ или попадание в ЗСК — снимается через правильный пакет пояснений.',['Выясняем причину блокировки','Готовим пояснения и документы','Снятие блока / выход из списка']],
+ 'Бизнес':['Регистрация и ликвидация ООО и ИП, договоры, помощь в получении кредитных продуктов.',['Подбираем форму и налоговый режим','Готовим документы','Регистрация / закрытие под ключ']],
+ 'Гражданство ЕС':['Помощь в получении европейского гражданства: проверяем основания и ведём процесс.',['Проверка оснований','Сбор и подготовка документов','Подача и сопровождение']]};
+const ch=document.getElementById('chips');
+Object.keys(S).forEach((k,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=k;b.onclick=()=>pick(k,b);ch.appendChild(b);if(!i)pick(k,b)});
+function pick(k,b){document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));b.classList.add('on');
+ document.getElementById('ans').textContent=S[k][0];
+ document.getElementById('steps').innerHTML=S[k][1].map(s=>'<li>'+s+'</li>').join('')}
+</script>
+</body>
+</html>
