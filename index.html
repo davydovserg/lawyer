@@ -42,8 +42,9 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0
 
 /* HERO */
 .hero{background:radial-gradient(1200px 600px at 75% 10%,#1d4b8f 0%,transparent 60%),linear-gradient(180deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;position:relative;overflow-x:clip;padding:140px 0 0;z-index:5}
-.hero:after{content:"";position:absolute;left:0;right:0;bottom:0;height:120px;background:linear-gradient(transparent,var(--bg))}
-.hgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:end;position:relative;z-index:2}
+.hero:after{content:"";pointer-events:none;position:absolute;left:0;right:0;bottom:0;height:120px;background:linear-gradient(transparent,var(--bg))}
+.hgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:end;position:relative}
+.hgrid>div:first-child{position:relative;z-index:3;padding-bottom:20px}
 .hero .eyebrow{color:var(--gold);display:flex;gap:12px;align-items:center}
 .hero .eyebrow:before{content:"";width:34px;height:1px;background:var(--gold)}
 .hero h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(46px,6.2vw,92px);line-height:.98;letter-spacing:-.01em;margin:22px 0 22px}
@@ -70,16 +71,14 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0
 .ddo small{display:block;font-weight:500;font-size:12px;opacity:.6}
 .hint{font-size:13px;color:#ffffff90;display:flex;gap:18px;flex-wrap:wrap;margin-bottom:60px}
 .hint span:before{content:"✓ ";color:#9cc3ff}
-.statue{position:relative;justify-self:center;width:min(440px,100%);aspect-ratio:3/4.1;border-radius:240px 240px 0 0;overflow:hidden;border:1px solid #ffffff2a;box-shadow:0 0 0 10px #ffffff08,0 0 0 11px #ffffff14}
-.statue img{width:100%;height:100%;object-fit:cover;object-position:52% 12%;transform:scale(1.25);transform-origin:50% 20%;filter:saturate(1.05) contrast(1.05)}
-.statue:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,#0a1d38e6 100%)}
-.statue .cap{position:absolute;left:0;right:0;bottom:22px;text-align:center;z-index:2}
-.statue .cap b{font-family:"Cormorant Garamond",serif;font-size:30px;font-weight:500;letter-spacing:.3em;display:block}
-.statue .cap small{font-size:11px;letter-spacing:.24em;text-transform:uppercase;opacity:.7}
+.statue{position:relative;justify-self:center;width:min(420px,100%);height:600px;display:flex;align-items:flex-end;justify-content:center}
+.statue:before{content:"";position:absolute;left:50%;top:44%;width:520px;height:520px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,#c9a96a40 0%,#3b82f622 38%,transparent 68%);pointer-events:none}
+.statue .ring{position:absolute;left:50%;top:42%;width:380px;height:380px;transform:translate(-50%,-50%);border-radius:50%;border:1px solid #c9a96a55;box-shadow:0 0 0 26px #ffffff05,0 0 0 27px #c9a96a22;pointer-events:none}
+.statue img{position:relative;height:100%;width:auto;mix-blend-mode:lighten;-webkit-mask-image:linear-gradient(#000 82%,transparent);mask-image:linear-gradient(#000 82%,transparent);filter:contrast(1.08) brightness(1.06)}
 .float{position:absolute;z-index:3;background:#fff;color:var(--ink);border-radius:14px;padding:12px 14px;box-shadow:0 20px 40px -20px #000c;font-size:13px;display:flex;gap:10px;align-items:center}
 .float b{display:block;font-size:14px}
-.float.f1{left:-30px;top:34%}
-.float.f2{right:-24px;top:60%}
+.float.f1{left:-24px;top:30%}
+.float.f2{right:-24px;top:58%}
 .ic{width:34px;height:34px;flex:none;border-radius:10px;background:var(--sky);color:var(--blue);display:grid;place-items:center;font-weight:800}
 
 /* SITUATIONS */
@@ -172,28 +171,73 @@ footer a{text-decoration:underline}
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,120px);background:var(--navy);color:#fff;padding:14px 20px;border-radius:12px;font-weight:600;z-index:200;transition:.4s var(--e)}
 .toast.on{transform:translate(-50%,0)}
 
+.ftog{display:none}
 @media (max-width:980px){
   .hgrid,.cgrid,.join{grid-template-columns:1fr}
-  .statue{width:min(360px,90%);margin-top:10px}
-  .float.f1{left:-8px}.float.f2{right:-8px}
-  .sits{grid-template-columns:repeat(2,1fr)}
+  .hgrid{gap:10px}
+  .statue{height:480px;width:100%}
+  .statue .ring{width:300px;height:300px}
+  .statue:before{width:400px;height:400px}
+  .float.f1{left:0}.float.f2{right:0}
+  .sits{grid-template-columns:repeat(3,1fr)}
   .trust{grid-template-columns:1fr 1fr}
-  .filters{position:static}
+  .filters{position:static;display:none;margin-top:-20px}
+  .filters.open{display:block}
+  .ftog{display:flex;width:100%}
+  .ftog.on{border-color:var(--blue);color:var(--blue)}
   .links{display:none}
 }
 @media (max-width:640px){
   .wrap{padding:0 16px}
-  .hero{padding-top:110px}
-  .search{grid-template-columns:1fr}
-  .cards,.trust,.f2{grid-template-columns:1fr}
+  .hero{padding-top:96px}
+  .hero h1{font-size:44px;margin:16px 0}
+  .hero .lead{font-size:16px}
+  .logo b{font-size:21px}.logo svg{width:28px;height:28px}
+  .logo small{font-size:9px;letter-spacing:.16em}
+  nav{padding:16px 0}
+  nav .btn{padding:10px 12px;font-size:13px}
+  .search{grid-template-columns:1fr;margin-top:26px}
+  .search .btn{width:100%;padding:15px}
+  .ddp{width:100%;max-height:320px}
+  .hint{gap:8px 14px;margin-bottom:0}
+  .statue{height:400px}
+  .statue .ring{width:250px;height:250px}
+  .statue:before{width:330px;height:330px}
+  .float{padding:9px 11px;font-size:11px;gap:8px}
+  .float b{font-size:12px}
+  .float .ic{width:28px;height:28px}
+  .float.f1{top:26%}.float.f2{top:56%}
+  section{padding:60px 0}
+  h2{font-size:34px}
+  .shead{margin-bottom:26px;gap:12px}
+  .shead p{font-size:15px}
   .sits{grid-template-columns:1fr 1fr;gap:10px}
   .sit{padding:16px}
-  .join{padding:30px 22px;border-radius:20px}
-  section{padding:64px 0}
-  .hint{margin-bottom:40px}
-  nav .btn{padding:10px 14px;font-size:13px}
-  .mbox{padding:24px 18px}
+  .sit .em{width:38px;height:38px;font-size:18px;margin-bottom:12px}
+  .sit b{font-size:15px}
+  .sit span{font-size:12px}
+  .cards,.trust,.f2{grid-template-columns:1fr}
+  .card{padding:18px}
+  .ch{flex-wrap:wrap}
+  .ch>div:last-child{margin-left:76px!important;margin-top:-6px}
+  .meta{grid-template-columns:1fr 1fr 1fr;gap:6px}
+  .meta b{font-size:13px}
+  .trust div{padding:22px}
+  .join{padding:30px 20px;border-radius:20px;gap:26px}
+  .join h2{font-size:32px}
+  .join .btn{width:100%}
+  .fgrid{flex-direction:column}
+  .mbox{padding:26px 18px;border-radius:18px}
+  .mbox h3{font-size:28px;padding-right:40px}
+  .modal{padding:10px;align-items:flex-end}
+  .f input,.f select,.f textarea,.filters select,.filters input[type=text]{font-size:16px}
+  .toast{width:calc(100% - 32px);text-align:center}
 }
+@media (max-width:380px){
+  .hero h1{font-size:40px}
+  .sit{padding:14px}
+}
+@media (max-width:330px){.sits{grid-template-columns:1fr}.hero h1{font-size:36px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -222,10 +266,9 @@ footer a{text-decoration:underline}
       <div class="hint"><span>Без комиссии для клиента</span><span>Прямая связь с юристом</span><span>Онлайн по всей России</span></div>
     </div>
     <div class="statue">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Regensburg%2C_Justitiabrunnen_--_2026_--_4446.jpg/1280px-Regensburg%2C_Justitiabrunnen_--_2026_--_4446.jpg" alt="Статуя Фемиды с мечом и весами на фоне неба">
+      <span class="ring"></span><img src="themis.jpg" alt="Фемида с весами и мечом" width="349" height="613">
       <div class="float f1"><span class="ic">✓</span><span><b>Диплом проверен</b>статус в реестре</span></div>
       <div class="float f2"><span class="ic">⚖</span><span><b>Подбор по делу</b>а не по рекламе</span></div>
-      <div class="cap"><b class="serif">ФЕМИДА</b><small>Закон · Равенство · Честь</small></div>
     </div>
   </div>
 </div>
@@ -238,6 +281,7 @@ footer a{text-decoration:underline}
 <section id="catalog"><div class="wrap">
   <div class="shead"><div><div class="eyebrow">Шаг 2</div><h2>Юристы для вашего дела</h2></div><p>Сравните опыт, направления и стоимость. Пишите напрямую — платформа не берёт процент с клиента.</p></div>
   <div class="cgrid">
+    <button class="btn g ftog" type="button" onclick="this.nextElementSibling.classList.toggle('open');this.classList.toggle('on')">⚙ Фильтры</button>
     <aside class="filters">
       <h4>Направление</h4><div id="fDirs"></div>
       <h4>Город</h4><select id="fCity"></select>
@@ -286,7 +330,7 @@ footer a{text-decoration:underline}
 
 <footer><div class="wrap fgrid">
   <span>© 2026 Фемида — платформа проверенных юристов</span>
-  <span>Фото статуи: Dietmar Rabich, <a href="https://commons.wikimedia.org/wiki/File:Regensburg,_Justitiabrunnen_--_2026_--_4446.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY-SA 4.0</span>
+  <span>Фото статуи: Deval Kulshrestha, <a href="https://commons.wikimedia.org/wiki/File:Statua_Iustitiae.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY-SA 4.0</span>
 </div></footer>
 
 <!-- профиль -->
@@ -333,11 +377,12 @@ const DIRS=[
  ['business','Регистрация и ликвидация','🏢','ООО и ИП под ключ'],
  ['civil','Гражданские дела','📜','Договоры, долги, иски'],
  ['credit','Кредитные продукты','💳','Помощь в получении'],
- ['eu','Гражданство ЕС','🇪🇺','Основания и документы']];
+ ['eu','Гражданство ЕС','🇪🇺','Основания и документы'],
+ ['other','Другое','✦','Не нашли свою ситуацию']];
 const DN=Object.fromEntries(DIRS.map(d=>[d[0],d[1]]));
 const SEED=[
  {id:'zol',name:'Марина Золотарёва',role:'Юрист',city:'Онлайн по РФ',exp:null,price:null,online:true,ver:true,real:true,
-  dirs:['inherit','family','realty','housing','criminal','bankrupt','block','business','civil','credit','eu'],
+  dirs:['inherit','family','realty','housing','criminal','bankrupt','block','business','civil','credit','eu','other'],
   about:'Ваш персональный юрист. Наследство, семейные и жилищные споры, сделки с недвижимостью, банкротство, блокировки по 115-ФЗ, регистрация и ликвидация бизнеса, гражданство ЕС.'},
  ...[
  ['Алексей Воронцов','Адвокат','Москва',14,5000,1,1,'criminal housing civil','Защита по уголовным делам, в том числе когда жилищный спор перешёл в уголовную плоскость.',4.9,38],
@@ -364,7 +409,7 @@ const SEED=[
  ['Вера Королёва','Адвокат','Москва',20,9000,1,1,'family inherit realty','Крупные семейные и наследственные споры, раздел бизнеса и недвижимости при разводе.',5.0,71],
  ['Артём Гусев','Юрист','Воронеж',5,2000,1,0,'business credit','Регистрация ИП и ООО, помощь в получении кредитов для малого бизнеса.',null,0],
  ['Людмила Ткаченко','Юрист','Ростов-на-Дону',14,3000,1,1,'housing civil','Жилищные споры: доли, коммуналка, перепланировки, споры с соседями и УК.',4.8,35]
- ].map((r,i)=>({id:'d'+i,name:r[0],role:r[1],city:r[2],exp:r[3],price:r[4],online:!!r[5],ver:!!r[6],dirs:r[7].split(' '),about:r[8],rating:r[9],reviews:r[10]}))];
+ ].map((r,i)=>({id:'d'+i,name:r[0],role:r[1],city:r[2],exp:r[3],price:r[4],online:!!r[5],ver:!!r[6],dirs:r[7].split(' ').concat(r[7].includes('civil')?['other']:[]),about:r[8],rating:r[9],reviews:r[10]}))];
 
 const LS='femida_lawyers';
 let added=[];try{added=JSON.parse(localStorage.getItem(LS)||'[]')}catch(e){}
